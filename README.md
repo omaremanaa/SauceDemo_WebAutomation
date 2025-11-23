@@ -24,11 +24,3 @@ The application under test:
 - **Allure Reports**
 - **Log4j**
 
----
-
-## 🚀 How to Run the Tests
-### Using Maven:
-Run the following command in your terminal:
-
-```bash
-mvn clean test -DsuiteXmlFile=testNg.xml
