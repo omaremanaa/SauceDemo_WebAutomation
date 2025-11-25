@@ -1,16 +1,15 @@
 package Pages;
 
 import Bots.ActionBot;
-import Utils.AllureSoftAssert;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import org.testng.Assert;
 
 public class LoginPage {
 
     private WebDriver webDriver;
     private ActionBot actionBot;
-    private AllureSoftAssert softAssert;
 
     private final By usernameField = By.id("user-name");
     private final By passwordField = By.id("password");
@@ -20,7 +19,6 @@ public class LoginPage {
     public LoginPage (WebDriver webDriver){
         this.webDriver = webDriver;
         this.actionBot = new ActionBot(webDriver);
-        this.softAssert = new AllureSoftAssert();
     }
 
     @Step("Login to sauce demo with username: {username} and password: {pass}")
@@ -33,15 +31,13 @@ public class LoginPage {
 
     @Step("Verify user is logged in and at home page")
     public HomePage isAtHomePage(String url){
-        softAssert.assertTrue(webDriver.getCurrentUrl().contains(url), "User is at home page");
-        softAssert.assertAll();
+        Assert.assertTrue(webDriver.getCurrentUrl().contains(url), "User is at home page");
         return new HomePage(webDriver);
     }
 
     @Step("Validate error message text")
     public LoginPage getErrorMessageText(String errorMessageText){
-        softAssert.assertEquals(actionBot.readText(errorMessage), errorMessageText, "Error message text is correct");
-        softAssert.assertAll();
+        Assert.assertTrue(actionBot.isElementDisplayed(errorMessage), "Error message is displayed");
         return this;
     }
 

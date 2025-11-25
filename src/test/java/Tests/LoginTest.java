@@ -21,7 +21,6 @@ public class LoginTest {
         jsonReader = new JsonReader("login");
         String baseUrl= PropertyReader.getProperty("baseUrl");
         webDriver.get(baseUrl);
-
     }
     @Test
     public void validLoginTest() {
@@ -32,6 +31,7 @@ public class LoginTest {
 
         new LoginPage(webDriver).logIn(username, password)
                 .isAtHomePage(homeUrl);
+
     }
 
     @Test
@@ -53,6 +53,7 @@ public class LoginTest {
         String errorMessage = jsonReader.getJsonData("error_invalid_credentials");
         new LoginPage(webDriver).logIn(incorrectUsername, password)
                 .getErrorMessageText(errorMessage);
+
     }
 
     @Test
@@ -61,6 +62,7 @@ public class LoginTest {
         String errorMessage = jsonReader.getJsonData("error_username_required");
         new LoginPage(webDriver).logIn("", "")
                 .getErrorMessageText(errorMessage);
+
     }
 
     @AfterMethod
