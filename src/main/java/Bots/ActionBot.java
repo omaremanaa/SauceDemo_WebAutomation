@@ -1,6 +1,7 @@
 package Bots;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -17,12 +18,16 @@ public class ActionBot {
     }
 
     public boolean isElementDisplayed(By locator) {
-        return webDriver.findElement(locator).isDisplayed();
+        try {
+            return webDriver.findElement(locator).isDisplayed();
+        } catch (NoSuchElementException e) {
+            return false;
+        }
     }
 
     public void clickElement(By locator)
     {
-       // waitBot.waitFor(isElementDisplayed(locator), 5);
+        // waitBot.waitFor(isElementDisplayed(locator), 5);
         waitBot.waitFor(() -> isElementDisplayed(locator), 5);
 
         webDriver.findElement(locator).click();

@@ -1,0 +1,10 @@
+{
+  "firstname": "test",
+  "lastname": "sauce",
+  "postalCode": "12345",
+  "errorFirstName": "Error: First Name is required",
+  "errorLastName":"Error: Last Name is required",
+  "errorPostalCode": "Error: Postal Code is required",
+  "validateTitle": "Thank you for your order!",
+  "validateSubtitle": "Your order has been dispatched, and will arrive just as fast as the pony can get there!"
+}
