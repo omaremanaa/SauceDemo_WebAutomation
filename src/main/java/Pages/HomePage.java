@@ -1,6 +1,7 @@
 package Pages;
 
 import Bots.ActionBot;
+import Utils.PropertyReader;
 import org.openqa.selenium.WebDriver;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
@@ -27,7 +28,7 @@ public class HomePage {
     private final By addToCartButtons = By.cssSelector(".btn_inventory");
     private final By cartBadge = By.cssSelector(".shopping_cart_badge");
     private final By sortDropdown = By.cssSelector("[data-test=\"product-sort-container\"]");
-   // private final By sortDropdown = By.xpath("//*[@id=\"header_container\"]/div[2]/div/span/select/option[3])");
+    // private final By sortDropdown = By.xpath("//*[@id=\"header_container\"]/div[2]/div/span/select/option[3])");
 
     private final By burgerMenuBtn = By.id("react-burger-menu-btn");
     private final By sidebarLogout = By.id("logout_sidebar_link");
@@ -89,6 +90,12 @@ public class HomePage {
         try { return Integer.parseInt(text); }
         catch (Exception e) { return 0; }
     }
+
+    public HomePage cartClick(){
+        actionBot.clickElement(cartBadge);
+        return this;
+    }
+
 
     // ====== Sidebar ======
 
@@ -153,6 +160,12 @@ public class HomePage {
         }
         Assert.fail("Product not found: " + productName);
         return this;
+    }
+
+    public CartPage validateCart(){
+        String cartUrl = PropertyReader.getProperty("cartUrl");
+        Assert.assertTrue(webDriver.getCurrentUrl().contains(cartUrl), "User is at cart page");
+        return new CartPage(webDriver);
     }
 
 }

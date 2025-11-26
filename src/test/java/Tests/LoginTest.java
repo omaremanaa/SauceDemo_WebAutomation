@@ -27,10 +27,9 @@ public class LoginTest {
         Allure.getLifecycle().updateTestCase(testResult -> testResult.setName("Valid Login"));
         String username = jsonReader.getJsonData("username");
         String password = jsonReader.getJsonData("password");
-        String homeUrl= PropertyReader.getProperty("homeUrl");
 
         new LoginPage(webDriver).logIn(username, password)
-                .isAtHomePage(homeUrl);
+                .isAtHomePage();
 
     }
 

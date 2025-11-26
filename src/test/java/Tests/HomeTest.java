@@ -28,11 +28,10 @@ public class HomeTest {
 
         String username = jsonReader.getJsonData("username");
         String password = jsonReader.getJsonData("password");
-        String homeUrl = PropertyReader.getProperty("homeUrl");
 
         homePage = new LoginPage(webDriver)
                 .logIn(username, password)
-                .isAtHomePage(homeUrl);
+                .isAtHomePage();
     }
 
     // ===========================

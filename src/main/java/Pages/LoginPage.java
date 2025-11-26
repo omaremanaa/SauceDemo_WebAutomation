@@ -1,6 +1,7 @@
 package Pages;
 
 import Bots.ActionBot;
+import Utils.PropertyReader;
 import io.qameta.allure.Step;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -30,7 +31,8 @@ public class LoginPage {
     }
 
     @Step("Verify user is logged in and at home page")
-    public HomePage isAtHomePage(String url){
+    public HomePage isAtHomePage(){
+        String url = PropertyReader.getProperty("homeUrl");
         Assert.assertTrue(webDriver.getCurrentUrl().contains(url), "User is at home page");
         return new HomePage(webDriver);
     }
