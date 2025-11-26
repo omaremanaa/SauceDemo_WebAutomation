@@ -22,17 +22,21 @@ public class ActionBot {
 
     public void clickElement(By locator)
     {
-        waitBot.waitFor(isElementDisplayed(locator), 5);
+       // waitBot.waitFor(isElementDisplayed(locator), 5);
+        waitBot.waitFor(() -> isElementDisplayed(locator), 5);
+
         webDriver.findElement(locator).click();
     }
 
     public void typeText(By locator, String text){
-        waitBot.waitFor(isElementDisplayed(locator), 5);
+        //waitBot.waitFor(isElementDisplayed(locator), 5);
+        waitBot.waitFor(() -> isElementDisplayed(locator), 5);
         webDriver.findElement(locator).sendKeys(text);
     }
 
     public String readText(By locator){
-        waitBot.waitFor(isElementDisplayed(locator), 5);
+        //waitBot.waitFor(isElementDisplayed(locator), 5);
+        waitBot.waitFor(() -> isElementDisplayed(locator), 5);
         return webDriver.findElement(locator).getText();
     }
 
@@ -43,7 +47,8 @@ public class ActionBot {
 
     // All products AddToCart buttons are with same class, So wa want to click according to its order in page
     public void clickElement(By locator, int index) {
-        waitBot.waitFor(isElementDisplayed(locator), 5);
+        //waitBot.waitFor(isElementDisplayed(locator), 5);
+        waitBot.waitFor(() -> isElementDisplayed(locator), 5);
         List<WebElement> elems = webDriver.findElements(locator);
         if (index < 0 || index >= elems.size()) {
             throw new IndexOutOfBoundsException("Invalid index: " + index + " for locator: " + locator);
@@ -53,7 +58,8 @@ public class ActionBot {
 
     // To read Fast according to index number in Elements List to avoid using Xpath
     public String readText(By locator, int index) {
-        waitBot.waitFor(isElementDisplayed(locator), 5);
+        //waitBot.waitFor(isElementDisplayed(locator), 5);
+        waitBot.waitFor(() -> isElementDisplayed(locator), 5);
         List<WebElement> elems = webDriver.findElements(locator);
         if (index < 0 || index >= elems.size()) {
             throw new IndexOutOfBoundsException("Invalid index: " + index + " for locator: " + locator);
@@ -63,7 +69,8 @@ public class ActionBot {
 
     // To check the drop_down menu according to text of elements
     public void selectByVisibleText(By locator, String visibleText) {
-        waitBot.waitFor(isElementDisplayed(locator), 5);
+        //waitBot.waitFor(isElementDisplayed(locator), 5);
+        waitBot.waitFor(() -> isElementDisplayed(locator), 5);
         Select select = new Select(webDriver.findElement(locator));
         select.selectByVisibleText(visibleText);
     }

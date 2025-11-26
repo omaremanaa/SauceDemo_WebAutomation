@@ -26,13 +26,15 @@ public class HomePage {
     private final By itemPrices = By.cssSelector(".inventory_item_price");
     private final By addToCartButtons = By.cssSelector(".btn_inventory");
     private final By cartBadge = By.cssSelector(".shopping_cart_badge");
-    private final By sortDropdown = By.cssSelector("[data-test='product_sort_container']");
+    private final By sortDropdown = By.cssSelector("[data-test=\"product-sort-container\"]");
+   // private final By sortDropdown = By.xpath("//*[@id=\"header_container\"]/div[2]/div/span/select/option[3])");
 
     private final By burgerMenuBtn = By.id("react-burger-menu-btn");
     private final By sidebarLogout = By.id("logout_sidebar_link");
     private final By sidebarAbout = By.id("about_sidebar_link");
     private final By sidebarAllItems = By.id("inventory_sidebar_link");
     private final By sidebarReset = By.id("reset_sidebar_link");
+    private final By exitSidebar = By.id("react-burger-cross-btn");
 
     // ====== Core Page Validation ======
 
@@ -93,6 +95,7 @@ public class HomePage {
     @Step("Open sidebar menu")
     public HomePage openSidebar() {
         actionBot.clickElement(burgerMenuBtn);
+        actionBot.clickElement(exitSidebar);
         return this;
     }
 
@@ -108,11 +111,11 @@ public class HomePage {
         return this;
     }
 
-    @Step("Reset App State from sidebar")
-    public HomePage resetAppState() {
-        actionBot.clickElement(sidebarReset);
-        return this;
+    @Step("Check Sidebar Is Opened")
+    public boolean isSidebarLinkVisible() {
+        return actionBot.isElementDisplayed(By.id("inventory_sidebar_link"));
     }
+
 
     // ====== Sorting ======
 
